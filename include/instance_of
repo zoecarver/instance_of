@@ -1,0 +1,10 @@
+#include <type_traits>
+
+namespace std 
+{
+    template <template <class...> class _Tp, class>
+    struct instance_of : std::false_type { };
+    
+    template <template <class...> class _Tp, class... _Args>
+    struct instance_of<_Tp, _Tp<_Args...>> : std::true_type { };
+}
